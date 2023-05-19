@@ -10,6 +10,7 @@
 ## Usage
 
 - cd <project_dir>
+- copy .env file shared on mail in the project_dir
 - npm install
 - npm start
 
