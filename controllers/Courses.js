@@ -2,15 +2,19 @@ const course_model = require("../models/Courses.js")
 
 async function getCourses (req,res){
     try{
-        const course_var = await course_model.getCourses(); 
+        const courseVar = await course_model.getCourses(); 
 
-        if (!course_var) {
+        if (!courseVar) {
             res.status(401).json({
                 Error:"Not found"
             })
         } else {
+            var all_course = []
+            for(let course of courseVar){
+                all_course.push(course.course_name) 
+            }
             res.status(200).json({ 
-                message: 'All courses', course_var 
+                message: 'All courses', all_course 
             });
         }
     }
@@ -20,9 +24,9 @@ async function getCourses (req,res){
 }
 
 async function addCourse (req,res){
-    
-        const {course_name}= req.body;
-        const course_var = await course_model.addCourse(course_name);
+        
+        const {courseName}= req.body;
+        const course_var = await course_model.addCourse(courseName);
     try{
         if (!course_var) {
         return res.status(401).json({
